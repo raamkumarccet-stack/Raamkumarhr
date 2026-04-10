@@ -607,7 +607,7 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="h-16 bg-white border-bottom border-slate-200 flex items-center justify-between px-8 z-10">
+        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 z-10">
           <div className="flex items-center gap-4 flex-1 max-w-xl">
             <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
@@ -646,7 +646,7 @@ export default function App() {
               className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4"
             >
               <motion.div
-                key={isAddingEmployee ? "add-emp" : editingEmployee?.id || isAddingJob ? "add-job" : editingJob?.id || editingPayroll?.id || editingStat?.data.title || editingChart?.category || "modal"}
+                key={isAddingEmployee ? "add-emp" : editingEmployee?.id || isAddingJob ? "add-job" : editingJob?.id || editingPayroll?.id || editingStat?.data?.title || editingChart?.type || "modal"}
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
@@ -678,7 +678,7 @@ export default function App() {
                         const parsed = JSON.parse(formData.get("chartJson") as string);
                         handleUpdateChartData(parsed);
                       } catch (err) {
-                        alert("Invalid JSON format");
+                        console.warn("Invalid JSON format");
                       }
                     }
                   }}
@@ -1143,7 +1143,7 @@ export default function App() {
                       <QuickActionButton
                         icon={AlertCircle}
                         label="Create Announcement"
-                        onClick={() => alert("Announcement feature coming soon!")}
+                        onClick={() => console.warn("Announcement feature coming soon!")}
                       />
                     </CardContent>
                   </Card>
